@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,6 +24,12 @@ namespace ServiceLayer.Service
 
            return _context.Products.AsNoTracking().ToList();
 
+        }
+
+        public List<Product> GetProductById(int id)
+        {
+            IQueryable queryable = _context.Products.Where(x=>x.ProductId == id);
+            return _context.Products.AsNoTracking().ToList();
         }
 
         public void AddProduct(Product product)

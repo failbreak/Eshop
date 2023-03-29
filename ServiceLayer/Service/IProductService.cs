@@ -4,6 +4,7 @@ namespace ServiceLayer.Service
 {
     public interface IProductService
     {
+        void AddProduct(Product product);
         void EditProduct(Product product);
 
         /// <summary>

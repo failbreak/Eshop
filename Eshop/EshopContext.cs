@@ -7,7 +7,7 @@ namespace DataLayer
 {
     public class EshopContext : DbContext
     {
-        //public EshopContext(DbContextOptions options) : base(options) {}
+        public EshopContext(DbContextOptions options) : base(options) { }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categorys { get; set; }
@@ -15,12 +15,12 @@ namespace DataLayer
         public DbSet<Image> Images { get; set; }
 
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder
-                .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
-                .UseSqlServer("Server = (localdb)\\mssqllocaldb; Database = Ëshop; Trusted_Connection = True; ");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder
+        //        .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
+        //        .UseSqlServer("Server = (localdb)\\mssqllocaldb; Database = Ëshop; Trusted_Connection = True; ");
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
