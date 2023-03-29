@@ -26,9 +26,9 @@ namespace DataLayer
         {
 
             
-            //ManyToMany
-            modelBuilder.Entity<OrderProduct>()
-            .HasKey(b => new { b.OrderId, b.ProductId });
+            ////ManyToMany
+            //modelBuilder.Entity<OrderProduct>()
+            //.HasKey(b => new { b.OrderId, b.ProductId });
 
 
         }

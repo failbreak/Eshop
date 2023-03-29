@@ -26,7 +26,7 @@ namespace DataLayer.Entities
 
         public int? ManufacturerId { get; set; } 
         public Manufacture Manufacture { get; set; } 
-        public ICollection<OrderProduct> Orders { get; set; } 
+        public ICollection<___OrderProduct> Orders { get; set; } 
 
     }
 }

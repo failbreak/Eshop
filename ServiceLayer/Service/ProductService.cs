@@ -38,16 +38,7 @@ namespace ServiceLayer.Service
         }
 
 
-        public IQueryable<Product> SortFilterPage(FilterPageOptions options)
-        {
-            var ProductQuery = _context.Products
-                .AsNoTracking()
-                .OrderProductsBy(options.OrderOptions)
-                .FilterProducts(options.FilterOptions, options.FilterValue);
-
-            options.SetupRestOfProducts(ProductQuery);
-            return ProductQuery.Page(options.PageNum - 1, options.PageSize);
-        }
+      
 
         public void EditProduct(Product product)
         {
