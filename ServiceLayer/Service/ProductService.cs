@@ -36,8 +36,20 @@ namespace ServiceLayer.Service
         {
             _context.Products.Add(product);
         }
-        
-         public void EditProduct(Product product)
+
+
+        public IQueryable<Product> SortFilterPage(FilterPageOptions options)
+        {
+            var ProductQuery = _context.Products
+                .AsNoTracking()
+                .OrderProductsBy(options.OrderOptions)
+                .FilterProducts(options.FilterOptions, options.FilterValue);
+
+            options.SetupRestOfProducts(ProductQuery);
+            return ProductQuery.Page(options.PageNum - 1, options.PageSize);
+        }
+
+        public void EditProduct(Product product)
         {
             Product? chosenProduct = _context.Products.AsNoTracking().FirstOrDefault(x => x.ProductId == product.ProductId);
             if (chosenProduct == null)

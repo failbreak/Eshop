@@ -3,10 +3,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        void suck()
-        {
-
-        }
+        
     }
 }
 //string[] menu = { "Get products", "get customers", "Test", "Test", "Test", };
