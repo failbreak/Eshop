@@ -37,9 +37,6 @@ namespace ServiceLayer.Service
             _context.Products.Add(product);
         }
 
-
-      
-
         public void EditProduct(Product product)
         {
             Product? chosenProduct = _context.Products.AsNoTracking().FirstOrDefault(x => x.ProductId == product.ProductId);
