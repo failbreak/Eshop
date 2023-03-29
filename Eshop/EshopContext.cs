@@ -7,11 +7,12 @@ namespace DataLayer
 {
     public class EshopContext : DbContext
     {
-        public EshopContext(DbContextOptions options) : base(options) {}
+        //public EshopContext(DbContextOptions options) : base(options) {}
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categorys { get; set; }
         public DbSet<Manufacture> Manufacturers { get; set; }
+        public DbSet<Image> Images { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

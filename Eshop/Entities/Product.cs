@@ -20,6 +20,7 @@ namespace DataLayer.Entities
         [Column(TypeName = "decimal(8, 2)")]
         public decimal Price { get; set; }
 
+        public bool IsDeleted { get; set; }
         public int? CategoryId { get; set; }
         public Category Category { get; set; } 
 

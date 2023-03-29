@@ -24,9 +24,30 @@ namespace ServiceLayer.Service
            return _context.Products.AsNoTracking().ToList();
 
         }
-            
 
+        public void AddProduct(Product product)
+        {
+            _context.Products.Add(product);
+        }
+        
+         public void EditProduct(Product product)
+        {
+            Product? chosenProduct = _context.Products.AsNoTracking().FirstOrDefault(x => x.ProductId == product.ProductId);
+            if (chosenProduct == null)
+                return;
+            chosenProduct = product;
+            _context.Entry(chosenProduct).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
 
+        public void RemoveProduct(int productId)
+        {
+            Product? chosenProduct = _context.Products.FirstOrDefault(x => x.ProductId == productId);
+                if (chosenProduct == null)
+                return;
+            chosenProduct.IsDeleted = true;
+            _context.SaveChanges();
+        }
 
 
     }
