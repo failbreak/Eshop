@@ -65,6 +65,24 @@ namespace TEstOfProduct
             _productService.EditProduct(testprod);
             var product = _context.Products.ToList().First();
             Assert.Equal(testprod.Name, product.Name);
+        }     
+        [Fact]
+        public void SaearchProdukt()
+        {
+            //arrange
+            var _context = Extension.CreateContext();
+            var _productService = new ProductService(_context);
+
+            //act
+            var testprod = new Product();
+            testprod.Name = "lol";
+            testprod.Price = 69;
+
+
+            _productService.AddProduct(testprod);
+            
+            var product = _productService.Search("lol").First();
+            Assert.Equal(testprod.Name, product.Name);
         }
         #endregion
 

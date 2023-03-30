@@ -54,6 +54,10 @@ namespace ServiceLayer.Service
             chosenProduct.IsDeleted = true;
             _context.SaveChanges();
         }
+        public List<Product> Search(string search)
+        {
+          return _context.Products.Where(x => EF.Functions.Like(x.Name, $"{search}")).ToList();
+        }
 
 
     }
