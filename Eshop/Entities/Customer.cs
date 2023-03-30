@@ -22,21 +22,6 @@ namespace DataLayer.Entities
         public string Address { get; set; }
         public bool IsDeleted { get; set; }
         public ICollection<Order> Orders { get; set; }
-
-        public Customer(string FirstName, string LastName, string Address, string email)
-        {
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.Address = Address;
-            this.email = email;
-        }  public Customer(int id, string FirstName, string LastName, string Address, string email)
-        {
-            this.CustomerId = id;
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.Address = Address;
-            this.email = email;
-
-        }
+        
     }
 }

@@ -20,8 +20,6 @@ namespace ServiceLayer.Service
         
         public List<Product> GetProducts()
         {
-            IQueryable query = _context.Products.Include(x=>x.Manufacture);
-
            return _context.Products.AsNoTracking().ToList();
 
         }
@@ -35,6 +33,7 @@ namespace ServiceLayer.Service
         public void AddProduct(Product product)
         {
             _context.Products.Add(product);
+            _context.SaveChanges();
         }
 
         public void EditProduct(Product product)

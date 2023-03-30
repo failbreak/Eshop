@@ -19,7 +19,7 @@ namespace ServiceLayer.Service
 
         public List<Customer> GetProducts()
         {
-            IQueryable query = _context.Customers.Include(x => x.CustomerId);
+            IQueryable query = _context.Customers;
             return _context.Customers.AsNoTracking().ToList();
         }
 
@@ -29,9 +29,11 @@ namespace ServiceLayer.Service
             return _context.Customers.AsNoTracking().ToList();
         }
 
-        public void CreateCustomer(string fName, string lname, string address, string email)
+        public void CreateCustomer(Customer customer)
         {
-            _context.Customers.Add(new Customer(fName, address, lname, email));
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+
         }
         public void DeleteCustomer(int CustomerId)
         {
