@@ -6,12 +6,9 @@ namespace ServiceLayer.Service
     {
         void AddProduct(Product product);
         void EditProduct(Product product);
-
-        /// <summary>
-        /// Gets all Products
-        /// </summary>
-        /// <returns></returns>
+        List<Product> GetProductById(int id);
         List<Product> GetProducts();
         void RemoveProduct(int productId);
+        List<Product> Search(string search);
     }
 }

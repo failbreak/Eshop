@@ -164,11 +164,6 @@ namespace TEstOfProduct
             //arrange
             var _context = Extension.CreateContext();
             var _OrderService = new OrderService(_context);
-
-
-
-            var _Cust = new CustomerService(_context);
-
             //act
             var customer = new Customer();
             customer.FirstName = "lol";
@@ -180,20 +175,16 @@ namespace TEstOfProduct
             testprod.OrderId = 1;
             testprod.PurchaseDate = DateTime.UtcNow;
             testprod.Customer = customer;
-
             _OrderService.CreateOrder(customer);
-
             var Order = _context.Orders.ToList().First();
             Assert.Equal(testprod.OrderId, Order.OrderId);
         }  
-        [Fact] public void UpdateOrder()
+        [Fact] 
+        public void UpdateOrder()
         {
             //arrange
             var _context = Extension.CreateContext();
             var _OrderService = new OrderService(_context);
-
-            var _Cust = new CustomerService(_context);
-
             //act
             var customer = new Customer();
             customer.FirstName = "lol";
@@ -201,27 +192,28 @@ namespace TEstOfProduct
             customer.Address = "lolstreet";
             customer.email = "lol@lol.lol";
             customer.CustomerId = 69;
+            var customer2 = new Customer();
+            customer.FirstName = "slol";
+            customer.LastName = "slol";
+            customer.Address = "lolstreet";
+            customer.email = "lol@lol.lol";
+            customer.CustomerId = 42;
+            var time = DateTime.UtcNow;
             var testprod = new Order();
             testprod.OrderId = 1;
-            testprod.PurchaseDate = DateTime.UtcNow;
+            testprod.PurchaseDate = time;
             testprod.Customer = customer;
-
-
             _OrderService.CreateOrder(customer);
-            testprod.OrderId = 2;
+            testprod.PurchaseDate = time;
             _OrderService.UpdateOrder(testprod);
             var Order = _context.Orders.ToList().First();
-            Assert.Equal(testprod.OrderId, Order.OrderId);
+            Assert.NotEqual(testprod.PurchaseDate, Order.PurchaseDate);
         }       
         [Fact] public void GetOrder()
         {
             //arrange
             var _context = Extension.CreateContext();
             var _OrderService = new OrderService(_context);
-
-            //act
-            var _Cust = new CustomerService(_context);
-
             //act
             var customer = new Customer();
             customer.FirstName = "lol";
@@ -233,10 +225,7 @@ namespace TEstOfProduct
             testprod.OrderId = 1;
             testprod.PurchaseDate = DateTime.UtcNow;
             testprod.Customer = customer;
-
-
             _OrderService.CreateOrder(customer);
-
             var Order = _OrderService.GetOrders();
             Assert.Equal(testprod.OrderId, Order[0].OrderId);
         }

@@ -17,16 +17,16 @@ namespace ServiceLayer.Service
         {
             _context = context;
         }
-        
+
         public List<Product> GetProducts()
         {
-           return _context.Products.AsNoTracking().ToList();
+            return _context.Products.AsNoTracking().ToList();
 
         }
 
         public List<Product> GetProductById(int id)
         {
-            IQueryable queryable = _context.Products.Where(x=>x.ProductId == id);
+            IQueryable queryable = _context.Products.Where(x => x.ProductId == id);
             return _context.Products.AsNoTracking().ToList();
         }
 
@@ -49,14 +49,14 @@ namespace ServiceLayer.Service
         public void RemoveProduct(int productId)
         {
             Product? chosenProduct = _context.Products.FirstOrDefault(x => x.ProductId == productId);
-                if (chosenProduct == null)
+            if (chosenProduct == null)
                 return;
             chosenProduct.IsDeleted = true;
             _context.SaveChanges();
         }
         public List<Product> Search(string search)
         {
-          return _context.Products.Where(x => EF.Functions.Like(x.Name, $"{search}")).ToList();
+            return _context.Products.Where(x => EF.Functions.Like(x.Name, $"{search}")).ToList();
         }
 
 

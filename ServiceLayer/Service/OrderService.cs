@@ -25,7 +25,12 @@ namespace ServiceLayer.Service
         }   
         public async Task UpdateOrder(Order order)
         {
-            _context.Update(order);
+            Order? chosenOrder = _context.Orders.AsNoTracking().FirstOrDefault(x => x.OrderId == order.OrderId);
+            if (chosenOrder == null)
+                return;
+            chosenOrder = order;
+            _context.Entry(chosenOrder).State = EntityState.Modified;
+            //_context.Update(order);
             await _context.SaveChangesAsync();
         }
         public List<Order> GetOrders()
