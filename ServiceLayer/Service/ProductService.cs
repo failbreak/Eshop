@@ -17,43 +17,49 @@ namespace ServiceLayer.Service
         {
             _context = context;
         }
-        
-        public List<Product> GetProducts()
+
+        public async Task<List<Product>> GetProducts()
         {
-            IQueryable query = _context.Products.Include(x=>x.Manufacture);
-
-           return _context.Products.AsNoTracking().ToList();
-
+            var products = _context.Products.AsNoTracking();
+            return products.ToList();
         }
 
-        public List<Product> GetProductById(int id)
+        public async Task<List<Product>> GetProductById(int id)
         {
-            IQueryable queryable = _context.Products.Where(x=>x.ProductId == id);
-            return _context.Products.AsNoTracking().ToList();
+            IQueryable queryable = _context.Products.Where(x => x.ProductId == id);
+            var ReturnValue = _context.Products.AsNoTracking().ToList();
+            return ReturnValue;
         }
 
-        public void AddProduct(Product product)
+        public async Task AddProduct(Product product)
         {
+            //specify there is a better way
             _context.Products.Add(product);
+            await _context.SaveChangesAsync();
         }
-        
-         public void EditProduct(Product product)
+
+        public async Task EditProduct(Product product)
         {
             Product? chosenProduct = _context.Products.AsNoTracking().FirstOrDefault(x => x.ProductId == product.ProductId);
             if (chosenProduct == null)
                 return;
             chosenProduct = product;
             _context.Entry(chosenProduct).State = EntityState.Modified;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void RemoveProduct(int productId)
+        public async Task RemoveProduct(int productId)
         {
             Product? chosenProduct = _context.Products.FirstOrDefault(x => x.ProductId == productId);
-                if (chosenProduct == null)
+            if (chosenProduct == null)
                 return;
             chosenProduct.IsDeleted = true;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+        }
+        public async Task<List<Product>> Search(string search)
+        {
+            List<Product> ReturnValue = await _context.Products.Where(x => EF.Functions.Like(x.Name, $"{search}")).ToListAsync();
+            return ReturnValue;
         }
 
 

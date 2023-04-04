@@ -4,14 +4,17 @@ namespace ServiceLayer.Service
 {
     public interface IProductService
     {
-        void AddProduct(Product product);
-        void EditProduct(Product product);
-
         /// <summary>
-        /// Gets all Products
+        ///  Adds a product
+        ///  Name, Price, CategoryId, ManufacturerId
         /// </summary>
+        /// <param name="Name, Price, CategoryId, ManufacturerId"> </param>
         /// <returns></returns>
-        List<Product> GetProducts();
-        void RemoveProduct(int productId);
+        Task AddProduct(Product product);
+        Task EditProduct(Product product);
+        Task<List<Product>> GetProductById(int id);
+        Task<List<Product>> GetProducts();
+        Task RemoveProduct(int productId);
+        Task<List<Product>> Search(string search);
     }
 }

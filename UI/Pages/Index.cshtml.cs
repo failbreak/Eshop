@@ -1,20 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataLayer.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.IdentityModel.Tokens;
+using ServiceLayer.Service;
 
 namespace UI.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        private readonly IProductService _ProductService;
 
-        public IndexModel(ILogger<IndexModel> logger)
-        {
-            _logger = logger;
-        }
+
+        public List<Product> Products { get; set; }
+
+        public IndexModel(IProductService productService) => _ProductService = productService;
+
 
         public void OnGet()
         {
-
+          Products = _ProductService.GetProducts().Result;
+           
         }
     }
 }
