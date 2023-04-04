@@ -17,10 +17,13 @@ namespace UI.Pages
         public IndexModel(IProductService productService) => _ProductService = productService;
 
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-          Products = _ProductService.GetProducts().Result;
-           
+            if (_ProductService.GetProducts != null)
+            {
+                Products = await _ProductService.GetProducts();
+            }
+
         }
     }
 }

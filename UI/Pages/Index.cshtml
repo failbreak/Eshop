@@ -7,9 +7,15 @@
 
 
 
-<div class="container">
+
     @foreach (var item in Model.Products)
     {
-        <p>@item.Name</p>
+        <table>
+
+        <tr>
+            <th>@item.Name</th>
+            <th>@item.Manufacture</th>
+            <th>@item.Price</th>
+        </tr>
+        </table>
     }
-</div>

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console", "Console\Console.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "UI\UI.csproj", "{24DA7D81-8EB8-41C2-86EB-62DC32EFA74B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEstOfProduct", "TEstOfProduct\TEstOfProduct.csproj", "{444FFDF8-BE7D-4BDF-9FB8-6B1689353B6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TEstOfProduct", "TEstOfProduct\TEstOfProduct.csproj", "{444FFDF8-BE7D-4BDF-9FB8-6B1689353B6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -25,4 +25,8 @@
     <ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\User\" />
+  </ItemGroup>
+
 </Project>
