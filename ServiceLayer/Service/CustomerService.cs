@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.Service
 {
-    public class CustomerService
+    public class CustomerService : ICustomerService
     {
         private readonly EshopContext _context;
         public CustomerService(EshopContext context)
@@ -17,10 +17,10 @@ namespace ServiceLayer.Service
             _context = context;
         }
 
-        public List<Customer> GetProducts()
+        public async Task<List<Customer>> GetCustomers()
         {
-            IQueryable query = _context.Customers;
-            return _context.Customers.AsNoTracking().ToList();
+            var query = _context.Customers.AsNoTracking();
+            return await query.ToListAsync();
         }
 
         public List<Customer> GetProductById(int CustomerId)
@@ -29,10 +29,10 @@ namespace ServiceLayer.Service
             return _context.Customers.AsNoTracking().ToList();
         }
 
-        public void  CreateCustomer(Customer customer)
+        public async Task CreateCustomer(Customer customer)
         {
             _context.Customers.Add(customer);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
         }
         public void DeleteCustomer(int CustomerId)

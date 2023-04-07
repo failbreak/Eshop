@@ -21,7 +21,7 @@ namespace ServiceLayer.Service
         public async Task<List<Product>> GetProducts()
         {
             var products = _context.Products.AsNoTracking();
-            return products.ToList();
+            return await products.ToListAsync();
         }
 
         public async Task<List<Product>> GetProductById(int id)

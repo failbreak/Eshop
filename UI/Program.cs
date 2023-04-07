@@ -9,7 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 string connectionString = builder.Configuration.GetConnectionString("Data Source");
 builder.Services.AddRazorPages().Services.AddDbContext<EshopContext>(x => x.UseSqlServer(connectionString))
     .AddScoped<IProductService,ProductService>()
-    .AddScoped<IOrderService,OrderService>();
+    .AddScoped<IOrderService,OrderService>()
+    .AddScoped<ICustomerService,CustomerService>();
 
 var app = builder.Build();
 
