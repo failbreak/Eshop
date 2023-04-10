@@ -36,7 +36,7 @@ namespace UI.Pages.User
             {
                 return Page();
             }
-            Customer newCust = new Customer();
+            Customer newCust = new();
             newCust.FirstName = FirstName;
             newCust.LastName = LastName;
             newCust.email = Email;
