@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entities
 {
-    public class Manufacture
+    public class ProductPicture
     {
-        public int ManufactureId { get; set; }
-
+        public int ProductPictureId { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string PictureUrl { get; set; }
 
-        public ICollection<Product> Products { get; set; } 
-
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
     }
 }

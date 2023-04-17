@@ -22,7 +22,7 @@ namespace ServiceLayer.Service
         {
             var products = _context.Products.AsNoTracking();
             return await products.ToListAsync();
-        }
+        }   
 
         public async Task<List<Product>> GetProductById(int id)
         {

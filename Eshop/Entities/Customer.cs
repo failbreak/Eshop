@@ -9,19 +9,26 @@ namespace DataLayer.Entities
 {
     public class Customer
     {
-      
+        public int CustomerId { get; set; }
+
+        [Required, StringLength(255)]
         public string email { get; set; }
 
+        [Required, StringLength(255)]
+        public string Password { get; set; }
 
-        public int CustomerId { get; set; }
         [Required, StringLength(50)]
         public string FirstName { get; set; }
+
         [Required, StringLength(50)]
         public string LastName { get; set; }
+
         [Required, StringLength(50)]
         public string Address { get; set; }
         public bool IsDeleted { get; set; }
-        public ICollection<Order> Orders { get; set; }
+
+
+        public ICollection<Order> Orders { get; set; } // :) r
         
     }
 }
