@@ -12,7 +12,7 @@ namespace ServiceLayer.Service
         /// <returns></returns>
         Task AddProduct(Product product);
         Task EditProduct(Product product);
-        Task<List<Product>> GetProductById(int id);
+        Task<Product> GetProductById(int id);
         Task<List<Product>> GetProducts();
         Task RemoveProduct(int productId);
         Task<List<Product>> Search(string search);

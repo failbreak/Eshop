@@ -24,10 +24,10 @@ namespace ServiceLayer.Service
             return await products.ToListAsync();
         }
 
-        public async Task<List<Product>> GetProductById(int id)
+        public async Task<Product> GetProductById(int id)
         {
             IQueryable queryable = _context.Products.Where(x => x.ProductId == id);
-            var ReturnValue = _context.Products.AsNoTracking().ToList();
+            Product ReturnValue = _context.Products.AsNoTracking().First();
             return ReturnValue;
         }
 
