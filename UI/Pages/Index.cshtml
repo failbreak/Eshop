@@ -16,10 +16,16 @@
 
         <tr>
             <th>@item.Name</th>
+            @foreach (var picture in item.ProductPictures)
+            {
+            <th><img src="@picture.PictureUrl.FirstOrDefault()" alt="hello" /></th>
+            }
             <th>@item.Manufacture</th>
             <th>@item.Price</th>
+            
         </tr>
         </table>
+    
     }
 
     <button>Meld syg</button>

@@ -9,7 +9,12 @@ namespace DataLayer.Entities
     public class Order
     {
         public int OrderId { get; set; }
+
+        public int CustId { get; set; }
+
         public DateTime PurchaseDate { get; set; }
+
+
 
         public Customer Customer { get; set; }
         public ICollection<OrderProduct> Products { get; set; }

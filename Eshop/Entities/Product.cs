@@ -20,12 +20,18 @@ namespace DataLayer.Entities
         [Column(TypeName = "decimal(8, 2)")]
         public decimal Price { get; set; }
 
-        public bool IsDeleted { get; set; }
-        public int? CategoryId { get; set; }
-        public Category Category { get; set; } 
 
-        public int? ManufacturerId { get; set; } 
-        public Manufacture Manufacture { get; set; } 
+        public bool IsDeleted { get; set; }
+
+
+
+        public int? CategoryId { get; set; } 
+        public Category Category { get; set; }  
+
+        public int? ManufactureId { get; set; }  
+        public Manufacture Manufacture { get; set; }  
+
+        public ICollection<ProductPicture> ProductPictures { get; set; }
         public ICollection<OrderProduct> Orders { get; set; } 
 
     }
