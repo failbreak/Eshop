@@ -12,26 +12,17 @@
 
 @foreach (var item in Model.Products)
 {
-    <div class="flex-row">
 
-        <table>
-
-            <tr>
-                <th>@item.Name</th>
-            </tr>
-            <tr>
-                <th><img class="w-25 h-25" src="@item.ProductPictures.FirstOrDefault().PictureUrl" alt="hello" /></th>
-            </tr>
-            <tr>
-                <th>@item.Manufacture</th>
-            </tr>
-            <tr>
-                <th>@item.Price</th>
-            </tr>
-
-        </table>
-
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="@item.ProductPictures.FirstOrDefault().PictureUrl" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@item.Name</h5>
+            <p class="card-text">@item.Price</p>
+            <h5 class="card-footer">@item.Manufacture</h5>
+            <a hidden>@item.ProductId</a>
+            <a id="buy" class="btn btn-primary">buy</a>
+        </div>
     </div>
+
     <br />
 }
-

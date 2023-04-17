@@ -58,7 +58,7 @@ namespace ServiceLayer.Service
         }
         public async Task<List<Product>> Search(string search)
         {
-            List<Product> ReturnValue = await _context.Products.Where(x => EF.Functions.Like(x.Name, $"{search}")).ToListAsync();
+            List<Product> ReturnValue = await _context.Products.Where(x => EF.Functions.Like(x.Name, $"%{search}%")).ToListAsync();
             return ReturnValue;
         }
 
