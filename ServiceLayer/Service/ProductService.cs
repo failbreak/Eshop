@@ -20,7 +20,7 @@ namespace ServiceLayer.Service
 
         public async Task<List<Product>> GetProducts()
         {
-            var products = _context.Products.AsNoTracking();
+            var products = _context.Products.Include(x=>x.ProductPictures).AsNoTracking();
             return await products.ToListAsync();
         }   
 

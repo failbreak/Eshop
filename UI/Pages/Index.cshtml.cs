@@ -13,7 +13,7 @@ namespace UI.Pages
 
 
         public List<Product> Products { get; set; }
-        public List<ProductPicture> Picture { get; set; }
+        //public List<ProductPicture> Picture { get; set; }
 
         public IndexModel(IProductService productService) => _ProductService = productService;
 

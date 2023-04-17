@@ -26,7 +26,7 @@ namespace UI.Pages.Admin
             product = _productService.GetProductById(id).Result;
             product.Name = name;
             product.Price = price;
-            product.ManufacturerId = manId;
+            product.ManufactureId = manId;
             product.CategoryId = catId;
             product.IsDeleted = delete;
 
