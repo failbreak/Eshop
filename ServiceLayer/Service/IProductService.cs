@@ -12,6 +12,7 @@ namespace ServiceLayer.Service
         /// <returns></returns>
         Task AddProduct(Product product);
         Task EditProduct(Product product);
+        ServiceLayer.Page<Product> GetPaging(int page, int count, string? search = null, int? categoryId = null, int[]? manufacturerIds = null, OrderByEnum? orderBy = OrderByEnum.NameAsc);
         Task<Product> GetProductById(int id);
         Task<List<Product>> GetProducts();
         Task RemoveProduct(int productId);

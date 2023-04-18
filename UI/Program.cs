@@ -8,9 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 string connectionString = builder.Configuration.GetConnectionString("Data Source");
 builder.Services.AddRazorPages().Services.AddDbContext<EshopContext>(x => x.UseSqlServer(connectionString))
-    .AddScoped<IProductService,ProductService>()
-    .AddScoped<IOrderService,OrderService>()
-    .AddScoped<ICustomerService,CustomerService>();
+    .AddScoped<IProductService, ProductService>()
+    .AddScoped<IOrderService, OrderService>()
+    .AddScoped<ICustomerService, CustomerService>().AddSession().AddMvc();
 
 var app = builder.Build();
 
@@ -21,10 +21,10 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+app.UseMvc();
+app.UseSession();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 
 app.UseAuthorization();

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceLayer;
 
 namespace ServiceLayer.Service
 {
@@ -20,9 +21,9 @@ namespace ServiceLayer.Service
 
         public async Task<List<Product>> GetProducts()
         {
-            var products = _context.Products.Include(x=>x.ProductPictures).AsNoTracking();
+            var products = _context.Products.Include(x => x.ProductPictures).Include(x => x.Manufacture).AsNoTracking();
             return await products.ToListAsync();
-        }   
+        }
 
         public async Task<Product> GetProductById(int id)
         {
@@ -62,6 +63,41 @@ namespace ServiceLayer.Service
             return ReturnValue;
         }
 
+        public Page<Product> GetPaging(int page, int count, string? search = null, int? categoryId = null, int[]? manufacturerIds = null, OrderByEnum? orderBy = OrderByEnum.NameAsc)
+        {
+            IQueryable<Product> query = _context.Products.Include(x => x.Manufacture).Include(x => x.Category).Include(x => x.ProductPictures).AsNoTracking();
 
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                query = query.Where(x => x.Name.ToLower().Contains(search.ToLower()) || x.Manufacture.Name.ToLower().Contains(search.ToLower()));
+            }
+            if (categoryId != null)
+            {
+                query = query.Where(x => x.CategoryId == categoryId);
+            }
+            if (manufacturerIds != null && manufacturerIds.Any())
+            {
+                query = query.Where(x => manufacturerIds.Contains(x.ManufactureId.Value));
+            }
+
+            switch (orderBy)
+            {
+                case OrderByEnum.NameAsc:
+                    query = query.OrderBy(x => x.Name);
+                    break;
+                case OrderByEnum.NameDesc:
+                    query = query.OrderByDescending(x => x.Name);
+                    break;
+                case OrderByEnum.PriceAsc:
+                    query = query.OrderBy(x => x.Price);
+                    break;
+                case OrderByEnum.PriceDesc:
+                    query = query.OrderByDescending(x => x.Price);
+                    break;
+            }
+            List<Product> products = query.Page(page, count).ToList();
+
+            return new Page<Product>() { Items = products, Total = query.Count(), CurrentPage = page, PageSize = count };
+        }
     }
 }
