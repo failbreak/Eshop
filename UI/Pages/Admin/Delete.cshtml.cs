@@ -44,4 +44,5 @@ namespace UI.Pages.Admin
             }
             return RedirectToPage("./Index");
         }
+    }
 }

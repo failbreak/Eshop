@@ -27,10 +27,10 @@ namespace UI.Pages.Admin
         public IActionResult OnGet()
         {
             Categories = _productService.GetCategories().Select(
-                    kategorinavn => new SelectListItem
+                    CatagoryName => new SelectListItem
                     {
-                        Value = kategorinavn.CategoryId.ToString(),
-                        Text = kategorinavn.Name
+                        Value = CatagoryName.CategoryId.ToString(),
+                        Text = CatagoryName.Name
                     }).ToList();
 
 
@@ -76,7 +76,7 @@ namespace UI.Pages.Admin
             }
 
 
-            return RedirectToPage("./AdminIndex");
+            return RedirectToPage("./Index");
         }
     }
 }
