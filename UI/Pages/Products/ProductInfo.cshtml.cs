@@ -30,7 +30,7 @@ namespace UI.Pages.Products
 
             if (Product == null)
             {
-                return RedirectToPage("./NotFound");
+                return RedirectToPage("./ProductsV");
             }
             return Page();
         }

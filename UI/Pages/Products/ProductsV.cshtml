@@ -7,8 +7,8 @@
     <div class="input-group mb-3">
         <input type="search" asp-for="@Model.SearchTerm" class="form-control">
         <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="submit">
-                @*<i class="fas fa-search"></i>*@
+            <button class="btn btn-outline-info " type="submit">
+               Submit
             </button>
         </div>
     </div>
@@ -20,12 +20,12 @@
 </form>
 
 <div class="card-deck">
-    @foreach (var produkter in Model.Products)
+    @foreach (var products in Model.Products)
     {
-        <partial name="_ProductVPartial" model="produkter" />
+        <partial name="_ProductVPartial" model="products" />
     }
 </div>
-
+<br />
 <div>
     <ul class="pagination">
         @for (var i = 1; i <= Model.TotalPages; i++)

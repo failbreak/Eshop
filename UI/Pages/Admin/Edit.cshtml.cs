@@ -1,37 +1,91 @@
 using DataLayer.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ServiceLayer.Service;
+using ServiceLayer.Service.Dto;
 
 namespace UI.Pages.Admin
 {
     public class EditModel : PageModel
     {
-        //private readonly IProductService _productService;
-        //public EditModel(IProductService productService) => _productService = productService;
-        //public List<Product> products { get; set; }
-        //public Product product { get; set; }
-        //public async Task OnGet()
-        //{
-        //    products = _productService.GetProducts().Result;
-        //}
-        //public async Task<IActionResult> DeleteOnPost(int id)
-        //{
-        //    await _productService.RemoveProduct(id);
-        //    return Page();
-        //}        
-        //public async Task<IActionResult> EditOnPost(int id, string name, decimal price, bool delete, int catId, int manId)
-        //{
-            
-        //    product = _productService.GetProductById(id).Result;
-        //    product.Name = name;
-        //    product.Price = price;
-        //    product.ManufactureId = manId;
-        //    product.CategoryId = catId;
-        //    product.IsDeleted = delete;
+        [BindProperty]
+        public ProductDto Product { get; set; }
 
-        //    await _productService.EditProduct(product);
-        //    return Page();
-        //}
+        public IEnumerable<SelectListItem> Categories { get; set; }
+        public IEnumerable<SelectListItem> Manufactures { get; set; }
+
+        private readonly IProductService _productService;
+
+        ILogger<EditModel> logger;
+
+        public EditModel(IProductService productService, ILogger<EditModel> logger)
+        {
+            _productService = productService;
+            this.logger = logger;
+        }
+
+        public async Task<IActionResult> OnGetAsync(int? productid)
+        {
+            Categories = _productService.GetCategories().Select(
+                categoryname => new SelectListItem
+                {
+                    Value = categoryname.CategoryId.ToString(),
+                    Text = categoryname.Name
+                }).ToList();
+
+            Manufactures = _productService.GetManufactuers().Select(
+                Manufacturename => new SelectListItem
+                {
+                    Value = Manufacturename.ManufactureId.ToString(),
+                    Text = Manufacturename.Name
+                }).ToList();
+
+            if (productid != null)
+            {
+                Product = _productService.GetProductById(productid.Value);
+            }
+
+            if (Product == null)
+            {
+                return NotFound();
+            }
+
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            Categories = _productService.GetCategories().Select(
+                categoryname => new SelectListItem
+                {
+                    Value = categoryname.CategoryId.ToString(),
+                    Text = categoryname.Name
+                }).ToList();
+
+            Manufactures = _productService.GetManufactuers().Select(
+                Manufacturename => new SelectListItem
+                {
+                    Value = Manufacturename.ManufactureId.ToString(),
+                    Text = Manufacturename.Name
+                }).ToList();
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            try
+            {
+                _productService.Update(Product);
+                logger.LogDebug("Produkt er blevet updatetet");
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error");
+                return Page();
+            }
+            return RedirectToPage("./Index");
+        }
     }
 }

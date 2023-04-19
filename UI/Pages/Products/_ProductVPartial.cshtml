@@ -13,11 +13,11 @@
         }
         <div class="card-body">
             <h5 class="card-title">@Model.Name</h5>
-            <p class="card-text">@Model.Price</p>
+            <p class="card-text">@Model.Price kr.</p>
         </div>
         <div class="card-footer text-muted">
-            <a asp-page="./Detail" asp-route-produktId="@Model.ProductId">
-                <i class="fas fa-info-circle"></i>
+            <a asp-page="./ProductInfo" asp-route-productId="@Model.ProductId">
+                <span class="fas fa-info-circle"> Product</span>
             </a>
         </div>
     </div>

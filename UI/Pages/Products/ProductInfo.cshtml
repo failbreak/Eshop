@@ -1,4 +1,4 @@
-﻿@page "{produktId:int}"
+﻿@page "{productId:int}"
 @model UI.Pages.Products.ProductInfoModel
 @{
     ViewData["Title"] = "ProductInfo";
@@ -9,51 +9,18 @@
     {
         <img class="card-img-top" src="https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png">
     }
-    @if (Model.Product.pictures.Count == 1)
-    {
-        <img src="@Model.Product.pictures.FirstOrDefault().PictureUrl" alt="Alternate Text" class="img-thumbnail my-4" />
-    }
-    else
-    {
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                @{
-                    var first = true;
-                }
-                @foreach (var item in Model.Product.pictures)
-                {
-                    <div class="carousel-item @(first?Html.Raw("active"):Html.Raw(""))">
-                        <img class="d-block w-100 " src="@item.PictureUrl">
-                    </div>
-                    first = false;
-                }
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
-               data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button"
-               data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    }
-
-
-
+        <img src="@Model.Product.pictures.FirstOrDefault().PictureUrl" alt="Alternate Text" class="w-25 h-25 my-4" />
 </div>
-
+@*
 <div>
     Id: @Model.Product.ProductId
-</div>
+</div>*@
 <div>
-    Pris: @Model.Product.Price
+    Price: @Model.Product.Price
 </div>
 <form method="post">
     <input type="hidden" asp-for="Product.ProductId" />
     <div class="form-group">
-        <input type="submit" value="Læg i Kurv" class="btn btn-primary" />
+        <input type="submit" value="Add to cart" class="btn btn-primary" />
     </div>
 </form>

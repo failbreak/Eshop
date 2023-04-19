@@ -17,11 +17,11 @@ namespace UI.Pages.Products
 
         public decimal? Total { get; set; } = 0;
 
-        private readonly IProductService _produktService;
+        private readonly IProductService _productService;
 
-        public BucketModel(IProductService produktService)
+        public BucketModel(IProductService productService)
         {
-            _produktService = produktService;
+            _productService = productService;
         }
 
         public IActionResult OnGet()
@@ -32,7 +32,7 @@ namespace UI.Pages.Products
                 Products = Order.Products;
                 foreach (ProductDto item in Products)
                 {
-                    item.pictures = _produktService.GetProductById(item.ProductId).pictures;
+                    item.pictures = _productService.GetProductById(item.ProductId).pictures;
                     if (item.Stack > 1)
                     {
                         Total += item.Price * item.Stack;
