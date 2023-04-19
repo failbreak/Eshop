@@ -70,10 +70,10 @@ namespace UI.Pages.Admin
                     Text = Manufacturename.Name
                 }).ToList();
 
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
 
             try
             {
