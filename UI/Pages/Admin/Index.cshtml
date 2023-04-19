@@ -11,13 +11,13 @@
         <tr>
             <td>@product.Name</td>
             <td>
-                <a asp-page="./Edit" asp-route-produktId="@product.ProductId">
-                    <i class="fas fa-edit"></i>
+                <a asp-page="./Edit" asp-route-productId="@product.ProductId">
+                    <span class="fas fa-edit">Edit</span>
                 </a>
             </td>
             <td>
-                <a asp-page="./Delete" asp-route-produktId="@product.ProductId">
-                    <i class="fas fa-trash"></i>
+                <a asp-page="./Delete" asp-route-productId="@product.ProductId">
+                    <span class="fas fa-trash">Delete</span>
                 </a>
             </td>
         </tr>

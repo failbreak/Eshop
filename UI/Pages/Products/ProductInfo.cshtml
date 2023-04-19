@@ -7,9 +7,13 @@
 <div>
     @if (Model.Product.pictures.Count == 0)
     {
-        <img class="card-img-top" src="https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png">
+        <img class="card-img-top w-25 h-25" src="https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png">
     }
-        <img src="@Model.Product.pictures.FirstOrDefault().PictureUrl" alt="Alternate Text" class="w-25 h-25 my-4" />
+    else
+    {
+        
+    <img src="@Model.Product.pictures.FirstOrDefault().PictureUrl" alt="Alternate Text" class="w-25 h-25 my-4" />
+    }
 </div>
 @*
 <div>

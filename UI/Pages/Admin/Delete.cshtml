@@ -1,0 +1,13 @@
+﻿@page "{productid}"
+@model UI.Pages.Admin.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete!</h1>
+<p>@Model.Product.Name</p>
+<form method="post">
+    <button type="submit" class="btn btn-danger">Delete!</button>
+    <a asp-page="./AdminIndex" class="btn btn-outline-danger">Cancel</a>
+</form>

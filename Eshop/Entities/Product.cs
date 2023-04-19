@@ -14,7 +14,7 @@ namespace DataLayer.Entities
         public int ProductId { get; set; }
 
         [Required]
-        [Display(Name = "Produkt Name")]
+        [Display(Name = "Product Name")]
         public string Name { get; set; }
 
         [Column(TypeName = "decimal(8, 2)")]
