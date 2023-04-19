@@ -24,49 +24,49 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("DataLayer.Entities.Category", b =>
                 {
-                    b.Property<int>("CateGoryId")
+                    b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CateGoryId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CateGoryId");
+                    b.HasKey("CategoryId");
 
                     b.ToTable("Categorys");
 
                     b.HasData(
                         new
                         {
-                            CateGoryId = 1,
+                            CategoryId = 1,
                             Name = "First Person Shooter"
                         },
                         new
                         {
-                            CateGoryId = 2,
+                            CategoryId = 2,
                             Name = "Action"
                         },
                         new
                         {
-                            CateGoryId = 3,
+                            CategoryId = 3,
                             Name = "Strategy"
                         },
                         new
                         {
-                            CateGoryId = 4,
+                            CategoryId = 4,
                             Name = "Adventure"
                         },
                         new
                         {
-                            CateGoryId = 5,
+                            CategoryId = 5,
                             Name = "RolePlay"
                         },
                         new
                         {
-                            CateGoryId = 6,
+                            CategoryId = 6,
                             Name = "SEX"
                         });
                 });
@@ -197,7 +197,7 @@ namespace DataLayer.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("DataLayer.Entities.OrderProduct", b =>
@@ -286,6 +286,87 @@ namespace DataLayer.Migrations
                             ManufactureId = 1,
                             Name = "Call Of Booty: Black Hens 1",
                             Price = 1000m
+                        },
+                        new
+                        {
+                            ProductId = 5,
+                            CategoryId = 1,
+                            IsDeleted = false,
+                            ManufactureId = 1,
+                            Name = "Call Of Booty: Black Hens 2",
+                            Price = 1000m
+                        },
+                        new
+                        {
+                            ProductId = 6,
+                            CategoryId = 1,
+                            IsDeleted = false,
+                            ManufactureId = 1,
+                            Name = "Call Of Booty: Black Hens 3",
+                            Price = 1000m
+                        },
+                        new
+                        {
+                            ProductId = 7,
+                            CategoryId = 1,
+                            IsDeleted = false,
+                            ManufactureId = 1,
+                            Name = "Call Of Booty: Black Hens 4",
+                            Price = 1000m
+                        },
+                        new
+                        {
+                            ProductId = 8,
+                            CategoryId = 6,
+                            IsDeleted = false,
+                            ManufactureId = 1,
+                            Name = "Call Of Booty: Modern FartFare",
+                            Price = 100m
+                        },
+                        new
+                        {
+                            ProductId = 9,
+                            CategoryId = 6,
+                            IsDeleted = false,
+                            ManufactureId = 1,
+                            Name = "Call Of Booty: Modern FartFare 2",
+                            Price = 100m
+                        },
+                        new
+                        {
+                            ProductId = 10,
+                            CategoryId = 6,
+                            IsDeleted = false,
+                            ManufactureId = 1,
+                            Name = "Call Of Booty: Modern FartFare 3",
+                            Price = 102m
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            CategoryId = 6,
+                            IsDeleted = false,
+                            ManufactureId = 1,
+                            Name = "Call Of Booty: Modern FartFare 4",
+                            Price = 100m
+                        },
+                        new
+                        {
+                            ProductId = 12,
+                            CategoryId = 6,
+                            IsDeleted = false,
+                            ManufactureId = 7,
+                            Name = "I ran out of ideas",
+                            Price = 600m
+                        },
+                        new
+                        {
+                            ProductId = 13,
+                            CategoryId = 6,
+                            IsDeleted = false,
+                            ManufactureId = 3,
+                            Name = "I ran out of ideas 2",
+                            Price = 220m
                         });
                 });
 
@@ -332,6 +413,54 @@ namespace DataLayer.Migrations
                         new
                         {
                             ProductPictureId = 4,
+                            PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg",
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            ProductPictureId = 5,
+                            PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg",
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            ProductPictureId = 6,
+                            PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg",
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            ProductPictureId = 8,
+                            PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg",
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            ProductPictureId = 9,
+                            PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg",
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            ProductPictureId = 10,
+                            PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg",
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            ProductPictureId = 11,
+                            PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg",
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            ProductPictureId = 12,
+                            PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg",
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            ProductPictureId = 13,
                             PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg",
                             ProductId = 4
                         });

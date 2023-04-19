@@ -26,11 +26,24 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li >
-                        <li class="nav-item"> <a class="fad fa-amazon-pay" aria-hidden="true"></a></li>
+                        <vc:bucket></vc:bucket>
+                        @*<li class="nav-item"> <a class="fad fa-amazon-pay" aria-hidden="true"></a></li>*@
                     </ul>
                 </div>
             </div>
         </nav>
+        @*<div class="col-3">
+            <button class="btn" data-bs-toggle="offcanvas" data-bs-target="#category"><i class="bi bi-list h4"></i></button>
+        </div>
+        <div class="offcanvas offcanvas-size-sm offcanvas-start" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="category">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Kategorier</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                @await Component.InvokeAsync("Catagories")
+            </div>
+        </div>*@
     </header>
     <div class="container">
         <main role="main" class="pb-3">

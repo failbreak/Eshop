@@ -1,0 +1,38 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div>
+<a href="~/User/Signup"> signup</a>
+<a href="~/Admin/Create"> Create</a>
+<a href="~/Admin/Edit"> Edit</a>
+</div>
+@*
+    <form>
+        <div class="topnav">
+            <a class="active" href="#home">Home</a>
+            <input type="text" placeholder="Search..">
+        <button type="submit"><i class="fa fa-search">Submit</i></button>
+        </div>
+    </form>
+*@
+@*@foreach (var item in Model.Products)
+{
+    <div class="d-inline-flex">
+        <div class="row">
+    <div class="card m-5" style="width: 18rem;">
+        <img class="card-img-top" src="@item.ProductPictures.FirstOrDefault().PictureUrl" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@item.Name</h5>
+            <p class="card-text">@item.Price</p>
+            <h5 class="card-footer">@item.Manufacturer.Name</h5>
+            <a hidden>@item.ProductId</a>
+            <a id="buy" class="btn btn-primary">buy</a>
+        </div>
+        </div>
+    </div>
+    <br />
+    </div>
+}*@

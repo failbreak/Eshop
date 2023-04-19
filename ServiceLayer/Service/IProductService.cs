@@ -1,21 +1,19 @@
 ﻿using DataLayer.Entities;
+using ServiceLayer.Service.Dto;
+using ServiceLayer.Service.DtoSorts;
 
 namespace ServiceLayer.Service
 {
     public interface IProductService
     {
-        /// <summary>
-        ///  Adds a product
-        ///  Name, Price, CategoryId, ManufacturerId
-        /// </summary>
-        /// <param name="Name, Price, CategoryId, ManufacturerId"> </param>
-        /// <returns></returns>
-        Task AddProduct(Product product);
-        Task EditProduct(Product product);
-        ServiceLayer.Page<Product> GetPaging(int page, int count, string? search = null, int? categoryId = null, int[]? manufacturerIds = null, OrderByEnum? orderBy = OrderByEnum.NameAsc);
-        Task<Product> GetProductById(int id);
-        Task<List<Product>> GetProducts();
-        Task RemoveProduct(int productId);
-        Task<List<Product>> Search(string search);
+        IQueryable<ProductDto> AddProduct();
+        ProductDto Create(ProductDto newProdukt);
+        ProductDto Delete(int productId);
+        IQueryable<Category> GetCategories();
+        IQueryable<Manufacture> GetManufactuers();
+        IQueryable<ProductDto> GetProducts();
+        ProductDto GetProductById(int productId);
+        IQueryable<ProductDto> SortFilterPage(SortFilterOptions options);
+        ProductDto Update(ProductDto updateProduct);
     }
 }

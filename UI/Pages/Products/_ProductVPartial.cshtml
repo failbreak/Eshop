@@ -1,0 +1,24 @@
+﻿@using ServiceLayer.Service.Dto;
+@model ProductDto
+
+<div class="col-sm-3">
+    <div class="card my-3">
+        @if (Model.pictures.Count >= 1)
+        {
+            <img class="card-img-top" src="@Model.pictures.FirstOrDefault().PictureUrl">
+        }
+        else
+        {
+            <img class="card-img-top" src="https://howfix.net/wp-content/uploads/2018/02/sIaRmaFSMfrw8QJIBAa8mA-article.png">
+        }
+        <div class="card-body">
+            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text">@Model.Price</p>
+        </div>
+        <div class="card-footer text-muted">
+            <a asp-page="./Detail" asp-route-produktId="@Model.ProductId">
+                <i class="fas fa-info-circle"></i>
+            </a>
+        </div>
+    </div>
+</div>

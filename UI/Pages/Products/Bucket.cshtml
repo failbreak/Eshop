@@ -1,0 +1,60 @@
+﻿@page
+@model UI.Pages.Products.BucketModel
+@{
+    ViewData["Title"] = "Bucket";
+}
+<h1>Cart</h1>
+<form method="post">
+    <table class="table">
+        @if (Model.Products != null)
+        {
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Slet</th>
+                </tr>
+            </thead>
+            @foreach (var produkt in Model.Products)
+            {
+                <tr>
+                    <td>
+                        <img src="@produkt.pictures.FirstOrDefault().PictureUrl" class="fa-bag-shopping" />
+                    </td>
+                    <td>
+                        @produkt.Name
+                    </td>
+                    <td>
+                        <input asp-for="@produkt.Stack" />
+                    </td>
+                    <td>
+                        @produkt.Price
+                    </td>
+                    <td>
+                        @Model.Total
+                    </td>
+                    <td>
+                        <i class="far fa-times-circle"></i>
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+    <div class="form-group">
+        <input type="hidden" asp-for="Products" />
+        <input type="submit" value="Update" class="btn btn-primary" />
+    </div>
+
+    <a asp-page="./ProductsV" class="btn btn-primary">
+        Forsæt med at handle
+    </a>
+
+    <a asp-page="./CheckOut" class="btn btn-primary">
+        Checkout
+    </a>
+
+</form>
