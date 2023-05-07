@@ -1,4 +1,5 @@
 ﻿using Bogus.DataSets;
+using DataLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 using ServiceLayer.Service.Dto;
 using System;
@@ -21,7 +22,7 @@ namespace ServiceLayer.Service.DtoSorts
     }
     public static class ProduktDtoFilter
     {
-        public static IQueryable<ProductDto> FilterProductsBy(this IQueryable<ProductDto> produkter, ProductFilterBy filterBy, string filterValue)
+        public static IQueryable<Product> FilterProductsBy(this IQueryable<Product> produkter, ProductFilterBy filterBy, string filterValue)
         {
             if (string.IsNullOrEmpty(filterValue))
                 return produkter;
