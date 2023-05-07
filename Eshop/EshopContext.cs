@@ -49,19 +49,19 @@ namespace DataLayer
                 new Category { Name = "SEX", CategoryId = 6 }
                 );
             modelBuilder.Entity<Product>().HasData(
-                new Product { Name = "Grand Thug Auto 6: Watch Me NAE NAE", CategoryId = 5, ManufactureId = 8, Price = 69, ProductId = 1 },
-                new Product { Name = "The elder scrolls 6: Shimmering Booty", CategoryId = 4, ManufactureId = 6, Price = 420, ProductId = 2 },
-                new Product { Name = "Only Hands", CategoryId = 6, ManufactureId = 9, Price = 0, ProductId = 3 },
-                new Product { Name = "Call Of Booty: Black Hens 1", CategoryId = 1, ManufactureId = 1, Price = 1000, ProductId = 4},
-                new Product { Name = "Call Of Booty: Black Hens 2", CategoryId = 1, ManufactureId = 1, Price = 1000, ProductId = 5},
-                new Product { Name = "Call Of Booty: Black Hens 3", CategoryId = 1, ManufactureId = 1, Price = 1000, ProductId = 6},
-                new Product { Name = "Call Of Booty: Black Hens 4", CategoryId = 1, ManufactureId = 1, Price = 1000, ProductId = 7},
-                new Product { Name = "Call Of Booty: Modern FartFare", CategoryId = 6, ManufactureId = 1, Price = 100, ProductId = 8},
-                new Product { Name = "Call Of Booty: Modern FartFare 2", CategoryId = 6, ManufactureId = 1, Price = 100, ProductId = 9},
-                new Product { Name = "Call Of Booty: Modern FartFare 3", CategoryId = 6, ManufactureId = 1, Price = 102, ProductId = 10},
-                new Product { Name = "Call Of Booty: Modern FartFare 4", CategoryId = 6, ManufactureId = 1, Price = 100, ProductId = 11},
-                new Product { Name = "I ran out of ideas", CategoryId = 6, ManufactureId = 7, Price = 600, ProductId = 12},
-                new Product { Name = "I ran out of ideas 2", CategoryId = 6, ManufactureId = 3, Price = 220, ProductId = 13}
+                new Product { Name = "Grand Thug Auto 6: Watch Me NAE NAE", CategoryId = 5, Description = "asdsadsadasdsa", ManufactureId = 8, Price = 69, ProductId = 1 },
+                new Product { Name = "The elder scrolls 6: Shimmering Booty", CategoryId = 4, Description = "asdsadsadasdsa", ManufactureId = 6, Price = 420, ProductId = 2 },
+                new Product { Name = "Only Hands", CategoryId = 6, Description = "asdsadsadasdsa", ManufactureId = 9, Price = 0, ProductId = 3 },
+                new Product { Name = "Call Of Booty: Black Hens 1", CategoryId = 1, Description = "asdsadsadasdsa", ManufactureId = 1, Price = 1000, ProductId = 4},
+                new Product { Name = "Call Of Booty: Black Hens 2", CategoryId = 1, Description = "asdsadsadasdsa", ManufactureId = 1, Price = 1000, ProductId = 5},
+                new Product { Name = "Call Of Booty: Black Hens 3", CategoryId = 1,  Description = "asdsadsadasdsa", ManufactureId = 1, Price = 1000, ProductId = 6},
+                new Product { Name = "Call Of Booty: Black Hens 4", CategoryId = 1, Description = "asdsadsadasdsa", ManufactureId = 1, Price = 1000, ProductId = 7},
+                new Product { Name = "Call Of Booty: Modern FartFare", CategoryId = 6, Description = "asdsadsadasdsa", ManufactureId = 1, Price = 100, ProductId = 8},
+                new Product { Name = "Call Of Booty: Modern FartFare 2", CategoryId = 6, Description = "asdsadsadasdsa", ManufactureId = 1, Price = 100, ProductId = 9},
+                new Product { Name = "Call Of Booty: Modern FartFare 3", CategoryId = 6, Description = "asdsadsadasdsa", ManufactureId = 1, Price = 102, ProductId = 10},
+                new Product { Name = "Call Of Booty: Modern FartFare 4", CategoryId = 6, Description = "asdsadsadasdsa", ManufactureId = 1, Price = 100, ProductId = 11},
+                new Product { Name = "I ran out of ideas", CategoryId = 6, Description = "asdsadsadasdsa", ManufactureId = 7, Price = 600, ProductId = 12},
+                new Product { Name = "I ran out of ideas 2", CategoryId = 6, Description = "asdsadsadasdsa", ManufactureId = 3, Price = 220, ProductId = 13}
                 );
             modelBuilder.Entity<ProductPicture>().HasData(
                 new ProductPicture { ProductId = 1, ProductPictureId = 1, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
