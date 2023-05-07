@@ -16,20 +16,20 @@
                     <th>Slet</th>
                 </tr>
             </thead>
-            @foreach (var produkt in Model.Products)
+            @foreach (var product in Model.Products)
             {
                 <tr>
                     <td>
-                        <img src="@produkt.pictures.FirstOrDefault().PictureUrl" class="fa-bag-shopping" />
+                        <img src="@product.pictures.FirstOrDefault().PictureUrl" class="fa-bag-shopping" />
                     </td>
                     <td>
-                        @produkt.Name
+                        @product.Name
                     </td>
                     <td>
-                        <input asp-for="@produkt.Stack" />
+                        <input asp-for="@product.Stack" />
                     </td>
                     <td>
-                        @produkt.Price
+                        @product.Price
                     </td>
                     <td>
                         @Model.Total

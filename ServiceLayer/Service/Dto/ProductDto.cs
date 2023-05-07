@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ServiceLayer.Service.Dto
@@ -16,6 +17,7 @@ namespace ServiceLayer.Service.Dto
         [Column(TypeName = "decimal(8, 2)")]
         public decimal Price { get; set; }
 
+        [JsonIgnore]
         public ICollection<ProductPicture> pictures { get; set; }
 
         public int? CategoryId { get; set; }

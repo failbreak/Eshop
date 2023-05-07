@@ -14,6 +14,7 @@ namespace UI.Pages.Admin
         public ProductDto Product { get; set; }
         public IEnumerable<SelectListItem> Categories { get; set; }
         public IEnumerable<SelectListItem> Manufactures { get; set; }
+        public string Url { get; set; }
 
         ILogger<CreateModel> logger;
 
@@ -60,10 +61,12 @@ namespace UI.Pages.Admin
                     Value = ManufactureName.ManufactureId.ToString(),
                     Text = ManufactureName.Name
                 }).ToList();
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+
+
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
             try
             {
                 _productService.Create(Product);

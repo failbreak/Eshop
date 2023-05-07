@@ -68,14 +68,15 @@ namespace DataLayer
                 new ProductPicture { ProductId = 2, ProductPictureId = 2, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
                 new ProductPicture { ProductId = 3, ProductPictureId = 3, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
                 new ProductPicture { ProductId = 4, ProductPictureId = 4, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
-                new ProductPicture { ProductId = 4, ProductPictureId = 5, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
-                new ProductPicture { ProductId = 4, ProductPictureId = 6, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
-                new ProductPicture { ProductId = 4, ProductPictureId = 8, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
-                new ProductPicture { ProductId = 4, ProductPictureId = 9, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
-                new ProductPicture { ProductId = 4, ProductPictureId = 10, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
-                new ProductPicture { ProductId = 4, ProductPictureId = 11, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
-                new ProductPicture { ProductId = 4, ProductPictureId = 12, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
-                new ProductPicture { ProductId = 4, ProductPictureId = 13, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" }
+                new ProductPicture { ProductId = 5, ProductPictureId = 5, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
+                new ProductPicture { ProductId = 6, ProductPictureId = 6, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
+                new ProductPicture { ProductId = 7, ProductPictureId = 7, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
+                new ProductPicture { ProductId = 8, ProductPictureId = 8, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
+                new ProductPicture { ProductId = 9, ProductPictureId = 9, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
+                new ProductPicture { ProductId = 10, ProductPictureId = 10, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
+                new ProductPicture { ProductId = 11, ProductPictureId = 11, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
+                new ProductPicture { ProductId = 12, ProductPictureId = 12, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" },
+                new ProductPicture { ProductId = 13, ProductPictureId = 13, PictureUrl = "https://f8n-production.s3.amazonaws.com/creators/profile/gra96ordf-aufkleber-trollface-jpg-cibag1.jpg" }
                 );
         }
     }

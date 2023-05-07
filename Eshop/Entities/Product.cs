@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Text.Json.Serialization;
 
 namespace DataLayer.Entities
 {
@@ -29,8 +30,9 @@ namespace DataLayer.Entities
         public Category Category { get; set; }  
 
         public int? ManufactureId { get; set; }  
-        public Manufacture Manufacture { get; set; }  
+        public Manufacture Manufacture { get; set; }
 
+        [JsonIgnore]
         public ICollection<ProductPicture> ProductPictures { get; set; }
         public ICollection<OrderProduct> Orders { get; set; } 
 
