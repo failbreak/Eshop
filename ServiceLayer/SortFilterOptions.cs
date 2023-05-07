@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
+using ServiceLayer.Service.DtoSorts;
 
-namespace ServiceLayer.Service.DtoSorts
+namespace ServiceLayer
 {
     public class SortFilterOptions
     {
@@ -26,7 +28,7 @@ namespace ServiceLayer.Service.DtoSorts
 
         public int NumPages { get; private set; }
 
-        public void SetupRestOfDto<T>(IQueryable<T> query)
+        public void SetupProduct<T>(IQueryable<T> query)
         {
             NumPages = (int)Math.Ceiling((double)query.Count() / PageSize);
             PageNum = Math.Min(Math.Max(1, PageNum), NumPages);

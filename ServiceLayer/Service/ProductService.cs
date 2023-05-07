@@ -7,7 +7,6 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using ServiceLayer;
 using ServiceLayer.Service.Dto;
 using ServiceLayer.Service.DtoSorts;
 
@@ -20,15 +19,15 @@ namespace ServiceLayer.Service
         {
             _context = context;
         }
-        public IQueryable<ProductDto> AddProduct()
+        public IQueryable<Product> AddProduct()
         {
-            var ProductsQuery = _context.Products.AsNoTracking().MapProduct();
+            var ProductsQuery = _context.Products.AsNoTracking();
             return ProductsQuery;
         }
 
-        public IQueryable<ProductDto> GetProducts()
+        public IQueryable<Product> GetProducts()
         {
-            var ProductsQuery = _context.Products.AsNoTracking().MapProduct();
+            var ProductsQuery = _context.Products.AsNoTracking().Include(i => i.ProductPictures).Include(c=>c.Category).Include(m=>m.Manufacture);
             return ProductsQuery;
         }
 
@@ -42,51 +41,49 @@ namespace ServiceLayer.Service
             return _context.Manufacturers;
         }
 
-        public IQueryable<ProductDto> SortFilterPage(SortFilterOptions options)
+        public IQueryable<Product> SortFilterPage(SortFilterOptions options)
         {
             var ProductsQuery = _context.Products
-                .AsNoTracking()
-                .MapProduct()
-                .OrderProductsBy(options.OrderByOptions)
-                .FilterProductsBy(options.FilterBy, options.FilterValue);
-
-            options.SetupRestOfDto(ProductsQuery);
+            .AsNoTracking()
+            .Include(i => i.ProductPictures)
+            .OrderProductsBy(options.OrderByOptions)
+            .FilterProductsBy(options.FilterBy, options.FilterValue);
+            options.SetupProduct(ProductsQuery);
             return ProductsQuery.Page(options.PageNum - 1, options.PageSize);
         }
 
-        public ProductDto GetProductById(int productId)
+        public IQueryable<Product> GetProductById(int productId)
         {
-            Product product = _context.Products.AsNoTracking().Include(p => p.ProductPictures).SingleOrDefault(p => p.ProductId == productId);
-            return new ProductDto { ProductId = product.ProductId, Name = product.Name, Price = product.Price, pictures = product.ProductPictures };
+            var VsStudioBullshit = _context.Products.AsNoTracking().Include(p => p.ProductPictures).SingleOrDefault(p => p.ProductId == productId);
+            return (IQueryable<Product>)VsStudioBullshit;
         }
-
-        public ProductDto Create(ProductDto newProdukt)
+        public async Task<Product> Create(Product newProdukt)
         {
             Product product = new Product { Name = newProdukt.Name, Price = newProdukt.Price, CategoryId = newProdukt.CategoryId, ManufactureId = newProdukt.ManufactureId };
-            _context.Products.Add(product);
+            await _context.Products.AddAsync(product);
             _context.SaveChanges();
             return newProdukt;
         }
 
-        public ProductDto Update(ProductDto updateProduct)
+        public async Task<Product> Update(Product updateProduct)
         {
             Product product = new Product { ProductId = updateProduct.ProductId, Name = updateProduct.Name, Price = updateProduct.Price, CategoryId = updateProduct.CategoryId, ManufactureId = updateProduct.ManufactureId };
             _context.Products.Update(product);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return updateProduct;
         }
 
-        public ProductDto Delete(int productId)
+
+        public async Task<Product> DeleteProduct(int productId)
         {
             Product product = _context.Products.Include(p => p.ProductPictures).Include(p => p.Manufacture).Include(p => p.Category).SingleOrDefault(p => p.ProductId == productId);
             if (product != null)
             {
                 _context.Products.Remove(product);
+                await _context.SaveChangesAsync();
             }
-            _context.SaveChanges();
-            return new ProductDto { ProductId = product.ProductId, Name = product.Name, Price = product.Price, pictures = product.ProductPictures };
+            return product;
         }
-
     }
 }
