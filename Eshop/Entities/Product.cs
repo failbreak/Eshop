@@ -21,6 +21,8 @@ namespace DataLayer.Entities
         [Column(TypeName = "decimal(8, 2)")]
         public decimal Price { get; set; }
 
+        [MaxLength(255)]
+        public string Description { get; set; }
         public bool IsDeleted { get; set; }
 
         public int? CategoryId { get; set; } 

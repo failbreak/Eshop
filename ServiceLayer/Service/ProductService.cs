@@ -19,42 +19,61 @@ namespace ServiceLayer.Service
         {
             _context = context;
         }
-        public IQueryable<Product> AddProduct()
+        public async Task<int> AddProduct(Product product)
         {
-            var ProductsQuery = _context.Products.AsNoTracking();
-            return ProductsQuery;
+            if (product == null)
+            {
+                throw new ArgumentNullException(nameof(product));
+            }
+
+            // Check if a product with the same name already exists
+            var existingProduct = await _context.Products.FirstOrDefaultAsync(p => p.Name == product.Name);
+            if (existingProduct != null)
+            {
+                throw new ArgumentException("No Products here that you were looking for", nameof(product));
+            }
+
+            // Add the new product to the context and save changes
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+
+            return product.ProductId;
         }
 
-        public async Task<Product> GetProducts()
+        public async Task<IEnumerable<Product>> GetProducts()
         {
-            var ProductsQuery = _context.Products.AsNoTracking().Include(i => i.ProductPictures).Include(c=>c.Category).Include(m=>m.Manufacture);
-            return (Product)ProductsQuery;
+            var product = await _context.Products.AsNoTracking().Include(i => i.ProductPictures).Include(c => c.Category).Include(m => m.Manufacture).ToListAsync();
+            return product;
         }
 
-        public IQueryable<Category> GetCategories()
+        public async Task<List<Category>> GetCategories()
         {
-            return _context.Categorys;
+            return await _context.Categorys.ToListAsync();
         }
 
-        public IQueryable<Manufacture> GetManufactuers()
+        public async Task<List<Manufacture>> GetManufacturers()
         {
-            return _context.Manufacturers;
+            return await _context.Manufacturers.ToListAsync();
         }
 
-        public IQueryable<Product> SortFilterPage(SortFilterOptions options)
+        public async Task<IEnumerable<Product>> SortFilterPageAsync(SortFilterOptions options)
         {
-            var ProductsQuery = _context.Products
-            .AsNoTracking()
-            .Include(i => i.ProductPictures)
-            .OrderProductsBy(options.OrderByOptions)
-            .FilterProductsBy(options.FilterBy, options.FilterValue);
-            options.SetupProduct(ProductsQuery);
-            return ProductsQuery.Page(options.PageNum - 1, options.PageSize);
+            var productsQuery = _context.Products
+                .AsNoTracking()
+                .Include(i => i.ProductPictures)
+                .OrderProductsBy(options.OrderByOptions)
+                .FilterProductsBy(options.FilterBy, options.FilterValue);
+
+            options.SetupProduct(productsQuery);
+
+            var pagedProducts = await productsQuery.Page(options.PageNum - 1, options.PageSize).ToListAsync();
+
+            return pagedProducts;
         }
 
         public async Task<Product> GetProductById(int productId)
         {
-            Product VsStudioBullshit = _context.Products.AsNoTracking().Include(p => p.ProductPictures).SingleOrDefault(p => p.ProductId == productId);
+            var VsStudioBullshit = await _context.Products.AsNoTracking().Include(p => p.ProductPictures).SingleOrDefaultAsync(p => p.ProductId == productId);
             return VsStudioBullshit;
         }
         public async Task<Product> Create(Product newProdukt)
@@ -65,13 +84,26 @@ namespace ServiceLayer.Service
             return newProdukt;
         }
 
-        public async Task<Product> Update(Product updateProduct)
+        public async Task<bool> UpdateProduct(Product product)
         {
-            Product product = new Product { ProductId = updateProduct.ProductId, Name = updateProduct.Name, Price = updateProduct.Price, CategoryId = updateProduct.CategoryId, ManufactureId = updateProduct.ManufactureId };
-            _context.Products.Update(product);
+            // Check if the product exists in the database
+            var existingProduct = await _context.Products.FindAsync(product.ProductId);
+            if (existingProduct == null)
+            {
+                return false;
+            }
 
+            // Update the existing product with the new values
+            existingProduct.Name = product.Name;
+            existingProduct.Description = product.Description;
+            existingProduct.Price = product.Price;
+            existingProduct.ManufactureId = product.ManufactureId;
+            existingProduct.CategoryId = product.CategoryId;
+
+            // Save the changes to the database
             await _context.SaveChangesAsync();
-            return updateProduct;
+
+            return true;
         }
 
 

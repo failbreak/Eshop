@@ -4,14 +4,14 @@ namespace ServiceLayer.Service
 {
     public interface IProductService
     {
-        IQueryable<Product> AddProduct();
+        Task<int> AddProduct(Product product);
         Task<Product> Create(Product newProdukt);
         Task<Product> DeleteProduct(int productId);
-        IQueryable<Category> GetCategories();
-        IQueryable<Manufacture> GetManufactuers();
+        Task<List<Category>> GetCategories();
+        Task<List<Manufacture>> GetManufacturers();
         Task<Product> GetProductById(int productId);
-        Task<Product> GetProducts();
-        IQueryable<Product> SortFilterPage(SortFilterOptions options);
-        Task<Product> Update(Product updateProduct);
+        Task<IEnumerable<Product>> GetProducts();
+        Task<IEnumerable<Product>> SortFilterPageAsync(SortFilterOptions options);
+        Task<bool> UpdateProduct(Product product);
     }
 }

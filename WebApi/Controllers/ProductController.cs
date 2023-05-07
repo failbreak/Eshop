@@ -59,6 +59,16 @@ namespace WebApi.Controllers
             }
 
         }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            var result = await _productService.DeleteProduct(id);
+
+            if (result == null)
+                return NotFound();
+
+            return NoContent();
+        }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, Product updateProduct)
@@ -80,9 +90,22 @@ namespace WebApi.Controllers
             product.CategoryId = updateProduct.CategoryId;
             product.ManufactureId = updateProduct.ManufactureId;
 
-            await _productService.Update(product);
+            await _productService.UpdateProduct(product);
 
             return NoContent();
+        }
+
+        [HttpGet("sortedfiltered")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetSortedFilteredProducts([FromQuery] SortFilterOptions options)
+        {
+            var products = await _productService.SortFilterPageAsync(options);
+
+            if (!products.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(products);
         }
     }
 }
