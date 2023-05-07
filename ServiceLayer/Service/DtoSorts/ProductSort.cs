@@ -1,4 +1,5 @@
 ﻿using Bogus.DataSets;
+using DataLayer.Entities;
 using ServiceLayer.Service.Dto;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace ServiceLayer.Service.DtoSorts
     }
     public static class ProduktDtoSort
     {
-        public static IQueryable<ProductDto> OrderProductsBy(this IQueryable<ProductDto> product, OrderByOptions orderByOptions)
+        public static IQueryable<Product> OrderProductsBy(this IQueryable<Product> product, OrderByOptions orderByOptions)
         {
             switch (orderByOptions)
             {
