@@ -25,10 +25,10 @@ namespace ServiceLayer.Service
             return ProductsQuery;
         }
 
-        public IQueryable<Product> GetProducts()
+        public async Task<Product> GetProducts()
         {
             var ProductsQuery = _context.Products.AsNoTracking().Include(i => i.ProductPictures).Include(c=>c.Category).Include(m=>m.Manufacture);
-            return ProductsQuery;
+            return (Product)ProductsQuery;
         }
 
         public IQueryable<Category> GetCategories()
@@ -52,10 +52,10 @@ namespace ServiceLayer.Service
             return ProductsQuery.Page(options.PageNum - 1, options.PageSize);
         }
 
-        public IQueryable<Product> GetProductById(int productId)
+        public async Task<Product> GetProductById(int productId)
         {
-            var VsStudioBullshit = _context.Products.AsNoTracking().Include(p => p.ProductPictures).SingleOrDefault(p => p.ProductId == productId);
-            return (IQueryable<Product>)VsStudioBullshit;
+            Product VsStudioBullshit = _context.Products.AsNoTracking().Include(p => p.ProductPictures).SingleOrDefault(p => p.ProductId == productId);
+            return VsStudioBullshit;
         }
         public async Task<Product> Create(Product newProdukt)
         {

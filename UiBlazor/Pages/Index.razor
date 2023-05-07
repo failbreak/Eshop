@@ -1,119 +1,56 @@
-﻿@page "/Index/{PageNumber:int}"
+﻿@page "/"
 @using DataLayer.Entities;
-@using ServiceLayer.Service.DtoSorts;
-@using ServiceLayer.Service;
-@using System.Linq;
-@using ServiceLayer;
+@inject HttpClient httpClient
 
-<div class="input-group mb-3">
-    <input type="search" @bind="SearchTerm" class="form-control">
-    <div class="input-group-append">
-        <button type="button" class="btn btn-outline-secondary" @onclick="@Search">
-            <i class="fas fa-search"></i>
-        </button>
-    </div>
-</div>
-@*<div class="form-group">
-        <select @bind="orderBy" class="form-control">
-            @foreach (var item in OrderByList)
+<h1>Products</h1>
+
+@if (products == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (products.Count == 0)
+{
+    <p><em>No products found.</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Manufacturer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in products)
             {
-                <option value="@item.Text">@item.Text</option>
+                <tr>
+                    <td>@product.ProductId</td>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Category.Name</td>
+                    <td>@product.Manufacture.Name</td>
+                </tr>
             }
-        </select>
-    </div>*@
+        </tbody>
+    </table>
+}
 
+@code {
+    private List<Product> products;
 
-<div class="card-deck">
-    @foreach (Product product in ProductList)
+    protected override async Task OnInitializedAsync()
     {
-        <div class="col-md-3">
-            <div class="card my-3">
-                @if (product.ProductPictures.Count > 0)
-                {
-                    <img class="card-img-top " src="@product.ProductPictures.FirstOrDefault().PictureUrl">
-                }
-                else
-                {
-                    <img class="card-img-top" src="https://cdn.vanderbilt.edu/vu-wp0/wp-content/uploads/sites/181/2019/09/09091628/Image-Coming-Soon.png">
-                }
-                <div class="card-body">
-                    <h5 class="card-title">@product.Name</h5>
-                    <p class="card-text">@product.Price</p>
-                </div>
-                <div class="card-footer text-muted">
-                    <a href="/Detail/@product.ProductId">
-                        <i class="fas fa-info-circle"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    }
-</div>
-<div>
-    <ul class="pagination">
-        @for (var i = 1; i <= TotalPages; i++)
+        try
         {
-            <li class="page-item @(i == CurrentPage ? "active" : "")">
-                <a href="Index/@i" class="page-link">@i</a>
-            </li>
+            products = await httpClient.GetFromJsonAsync<List<Product>>("api/products");
         }
-    </ul>
-</div>
-
-@code{
-    [Parameter]
-    public int PageNumber { get; set; }
-
-    private List<Product> ProductList;
-
-    private SortFilterOptions SortFilterPage { get; set; }
-
-    private OrderByOptions orderBy { get; set; }
-
-    private string SearchTerm { get; set; }
-
-    #region Page
-    public int CurrentPage { get; set; } = 1;
-    public int Count { get; set; }
-    public int PageSize { get; set; } = 10;
-
-    public int TotalPages { get; set; }
-    #endregion
-
-    protected override void OnInitialized()
-    {
-        SortFilterPage = new SortFilterOptions { FilterBy = ProductFilterBy.ByName, FilterValue = SearchTerm, OrderByOptions = orderBy, PageNum = CurrentPage, PageSize = PageSize };
-
-        ProductList = _ProductService.SortFilterPage(SortFilterPage).ToList();
-
-        TotalPages = SortFilterPage.NumPages;
-    }
-
-    protected override void OnParametersSet()
-    {
-        if (PageNumber < 1) PageNumber = 1;
-
-        CurrentPage = PageNumber;
-
-        SortFilterPage = new SortFilterOptions { FilterBy = ProductFilterBy.ByName, FilterValue = SearchTerm, OrderByOptions = orderBy, PageNum = PageNumber, PageSize = PageSize };
-
-        ProductList = _ProductService.SortFilterPage(SortFilterPage).ToList();
-
-    }
-
-    private void Search()
-    {
-        if (PageNumber > 1)
+        catch (Exception)
         {
-            PageNumber = 1;
-            CurrentPage = PageNumber;
+            // Handle error
         }
-
-        SortFilterPage = new SortFilterOptions { FilterBy = ProductFilterBy.ByName, FilterValue = SearchTerm, OrderByOptions = orderBy, PageNum = CurrentPage, PageSize = PageSize };
-
-        ProductList = _ProductService.SortFilterPage(SortFilterPage).ToList();
-
-
-        TotalPages = SortFilterPage.NumPages;
     }
 }

@@ -9,8 +9,8 @@ namespace ServiceLayer.Service
         Task<Product> DeleteProduct(int productId);
         IQueryable<Category> GetCategories();
         IQueryable<Manufacture> GetManufactuers();
-        IQueryable<Product> GetProductById(int productId);
-        IQueryable<Product> GetProducts();
+        Task<Product> GetProductById(int productId);
+        Task<Product> GetProducts();
         IQueryable<Product> SortFilterPage(SortFilterOptions options);
         Task<Product> Update(Product updateProduct);
     }

@@ -1,6 +1,7 @@
 using DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using ServiceLayer;
 using ServiceLayer.Service;
 using System.Text.Json.Serialization;
 
@@ -8,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<IProductService, ProductService>()
-    .AddDbContext<EshopContext>(x=>x.UseSqlServer(builder.Configuration.GetConnectionString("Data Source"))).AddSwaggerGen().AddEndpointsApiExplorer()
+    .AddDbContext<EshopContext>(x=>x.UseSqlServer(builder.Configuration.GetConnectionString("EShopContext"))).AddSwaggerGen().AddEndpointsApiExplorer()
     .AddControllers()
     .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 builder.Services.AddControllers();

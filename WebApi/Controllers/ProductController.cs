@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DataLayer.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ServiceLayer;
 using ServiceLayer.Service;
 using ServiceLayer.Service.Dto;
+using System;
 
 namespace WebApi.Controllers
 {
@@ -11,32 +14,37 @@ namespace WebApi.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
-
         public ProductController(IProductService productService)
         {
             _productService = productService;
         }
 
-        // GET: api/Produkt
+        // GET: api/Product
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            return _productService.GetProducts().ToList();
+            var products = await _productService.GetProducts();
+            if (products == null)
+            {
+                return NotFound();
+            }
+            return Ok(products);
         }
 
         [HttpPost]
-        public async Task<ActionResult<ProductDto>> CreateProduct(ProductDto productDTO)
+        public async Task<ActionResult<Product>> CreateProduct(Product product)
         {
-            return _productService.Create(productDTO);
+            var vsbullshit = await _productService.Create(product);
+            return vsbullshit;
         }
 
-        // GET: api/Produkt/id
+        // GET: api/Product/id
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProductDto>> GetProduct(int id)
+        public async Task<ActionResult<Product>> GetProductbyid(int id)
         {
             try
             {
-                ProductDto product = _productService.GetProductById(id);
+                var product = await _productService.GetProductById(id);
 
                 if (product == null)
                 {
@@ -53,29 +61,28 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditProduct(int id, ProductDto productDTO)
+        public async Task<IActionResult> Update(int id, Product updateProduct)
         {
-
-            try
+            if (id != updateProduct.ProductId)
             {
-                if (id != productDTO.ProductId)
-                {
-                    return BadRequest();
-                }
-
-                ProductDto product = _productService.GetProductById(id);
-                if (product == null)
-                {
-                    return NotFound();
-                }
-                return Ok(_productService.Update(productDTO));
-                
+                return BadRequest();
             }
-            catch
+
+            var product = await _productService.GetProductById(id);
+
+            if (product == null)
             {
                 return NotFound();
             }
-        }
 
+            product.Name = updateProduct.Name;
+            product.Price = updateProduct.Price;
+            product.CategoryId = updateProduct.CategoryId;
+            product.ManufactureId = updateProduct.ManufactureId;
+
+            await _productService.Update(product);
+
+            return NoContent();
+        }
     }
 }
