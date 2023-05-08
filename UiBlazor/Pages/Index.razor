@@ -46,10 +46,10 @@ else
     {
         try
         {
-            products = await httpClient.GetFromJsonAsync<List<Product>>("api/Product/1");
+            products = await httpClient.GetFromJsonAsync<List<Product>>("api/Product/");
             if (products == null)
             {
-                products.Add(new Product { Name = "Grand Thug Auto 6: Watch Me NAE NAE", CategoryId = 5, Description = "asdsadsadasdsa", ManufactureId = 8, Price = 69, ProductId = 1 });
+                //products.Add(new Product { Name = "Grand Thug Auto 6: Watch Me NAE NAE", CategoryId = 5, Description = "asdsadsadasdsa", ManufactureId = 8, Price = 69, ProductId = 1 });
             }
         }
         catch (Exception)

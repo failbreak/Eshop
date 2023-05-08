@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DataLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class helsme : Migration
+    public partial class lols213 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -86,6 +86,7 @@ namespace DataLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: true),
                     ManufactureId = table.Column<int>(type: "int", nullable: true)
@@ -181,22 +182,22 @@ namespace DataLayer.Migrations
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "ProductId", "CategoryId", "IsDeleted", "ManufactureId", "Name", "Price" },
+                columns: new[] { "ProductId", "CategoryId", "Description", "IsDeleted", "ManufactureId", "Name", "Price" },
                 values: new object[,]
                 {
-                    { 1, 5, false, 8, "Grand Thug Auto 6: Watch Me NAE NAE", 69m },
-                    { 2, 4, false, 6, "The elder scrolls 6: Shimmering Booty", 420m },
-                    { 3, 6, false, 9, "Only Hands", 0m },
-                    { 4, 1, false, 1, "Call Of Booty: Black Hens 1", 1000m },
-                    { 5, 1, false, 1, "Call Of Booty: Black Hens 2", 1000m },
-                    { 6, 1, false, 1, "Call Of Booty: Black Hens 3", 1000m },
-                    { 7, 1, false, 1, "Call Of Booty: Black Hens 4", 1000m },
-                    { 8, 6, false, 1, "Call Of Booty: Modern FartFare", 100m },
-                    { 9, 6, false, 1, "Call Of Booty: Modern FartFare 2", 100m },
-                    { 10, 6, false, 1, "Call Of Booty: Modern FartFare 3", 102m },
-                    { 11, 6, false, 1, "Call Of Booty: Modern FartFare 4", 100m },
-                    { 12, 6, false, 7, "I ran out of ideas", 600m },
-                    { 13, 6, false, 3, "I ran out of ideas 2", 220m }
+                    { 1, 5, "asdsadsadasdsa", false, 8, "Grand Thug Auto 6: Watch Me NAE NAE", 69m },
+                    { 2, 4, "asdsadsadasdsa", false, 6, "The elder scrolls 6: Shimmering Booty", 420m },
+                    { 3, 6, "asdsadsadasdsa", false, 9, "Only Hands", 0m },
+                    { 4, 1, "asdsadsadasdsa", false, 1, "Call Of Booty: Black Hens 1", 1000m },
+                    { 5, 1, "asdsadsadasdsa", false, 1, "Call Of Booty: Black Hens 2", 1000m },
+                    { 6, 1, "asdsadsadasdsa", false, 1, "Call Of Booty: Black Hens 3", 1000m },
+                    { 7, 1, "asdsadsadasdsa", false, 1, "Call Of Booty: Black Hens 4", 1000m },
+                    { 8, 6, "asdsadsadasdsa", false, 1, "Call Of Booty: Modern FartFare", 100m },
+                    { 9, 6, "asdsadsadasdsa", false, 1, "Call Of Booty: Modern FartFare 2", 100m },
+                    { 10, 6, "asdsadsadasdsa", false, 1, "Call Of Booty: Modern FartFare 3", 102m },
+                    { 11, 6, "asdsadsadasdsa", false, 1, "Call Of Booty: Modern FartFare 4", 100m },
+                    { 12, 6, "asdsadsadasdsa", false, 7, "I ran out of ideas", 600m },
+                    { 13, 6, "asdsadsadasdsa", false, 3, "I ran out of ideas 2", 220m }
                 });
 
             migrationBuilder.InsertData(
