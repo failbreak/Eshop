@@ -1,0 +1,74 @@
+﻿@page "/addproduct"
+@using System.Net.Http.Json
+@using DataLayer.Entities
+@using ServiceLayer.Service
+@using System.ComponentModel.DataAnnotations
+@inject HttpClient Http
+@inject ProductService ProductService
+
+<h3>Add Product</h3>
+
+<EditForm Model="@product" OnValidSubmit="@AddProduct">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <InputText id="name" class="form-control" @bind-Value="@product.Name" />
+        <ValidationMessage For="() => product.Name)" />
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <InputText id="description" class="form-control" @bind-Value="@product.Description" />
+        <ValidationMessage For="() => product.Description)" />
+    </div>
+
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <InputNumber id="price" class="form-control" step="0.01" @bind-Value="@product.Price" />
+        <ValidationMessage For="@(() => product.Price)" />
+    </div>
+
+    <div class="form-group">
+        <label for="manufacturerId">Manufacturer:</label>
+        <select id="manufacturerId" class="form-control" @bind-Value="@product.ManufactureId">
+            @foreach (var manufacturer in manufacturers)
+            {
+                <option value="@manufacturer.Id">@manufacturer.Name</option>
+            }
+        </select>
+        <ValidationMessage For="@(() => product.ManufactureId)" />
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Add Product</button>
+    </div>
+</EditForm>
+
+@if (addedProduct != null)
+{
+    <div class="alert alert-success" role="alert">
+        Product "@addedProduct.Name" added successfully.
+    </div>
+}
+
+@code {
+    private Product product = new Product();
+    private List<Manufacture> manufacturers;
+    private Product addedProduct;
+
+    protected override async Task OnInitializedAsync()
+    {
+        manufacturers = await ProductsApi.GetManufacturersAsync();
+    }
+
+    private async Task AddProduct()
+    {
+        var response = await Http.PostAsJsonAsync("/api/products", product);
+        if (response.IsSuccessStatusCode)
+        {
+            addedProduct = await response.Content.ReadFromJsonAsync<Product>();
+            ProductService.AddProduct(addedProduct);
+        }
+    }
+}

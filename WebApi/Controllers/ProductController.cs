@@ -107,5 +107,12 @@ namespace WebApi.Controllers
 
             return Ok(products);
         }
+
+        [HttpGet("manufactures")]
+        public async Task<ActionResult<IEnumerable<Manufacture>>> GetManufacturers()
+        {
+            var manufacturers = await _productService.GetManufacturers();
+            return Ok(manufacturers);
+        }
     }
 }
