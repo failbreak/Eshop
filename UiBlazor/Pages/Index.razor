@@ -1,20 +1,11 @@
 ﻿@page "/"
 @using DataLayer.Entities;
+@using System.Net.Http.Json
 @inject HttpClient httpClient
 
 <h1>Products</h1>
 
-@if (products == null)
-{
-    <p><em>Loading...</em></p>
-}
-else if (products.Count == 0)
-{
-    <p><em>No products found.</em></p>
-}
-else
-{
-    <table class="table">
+ <table class="table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -41,16 +32,13 @@ else
 
 @code {
     private List<Product> products;
-    
+
     protected override async Task OnInitializedAsync()
     {
+        //products.Add(new Product { Name = "Grand Thug Auto 6: Watch Me NAE NAE", CategoryId = 5, Description = "asdsadsadasdsa", ManufactureId = 8, Price = 69, ProductId = 1 });
         try
         {
             products = await httpClient.GetFromJsonAsync<List<Product>>("api/Product/1");
-            if (products == null)
-            {
-                products.Add(new Product { Name = "Grand Thug Auto 6: Watch Me NAE NAE", CategoryId = 5, Description = "asdsadsadasdsa", ManufactureId = 8, Price = 69, ProductId = 1 });
-            }
         }
         catch (Exception)
         {
