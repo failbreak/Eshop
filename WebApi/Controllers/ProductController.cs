@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DataLayer.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer;
 using ServiceLayer.Service;
@@ -19,24 +20,24 @@ namespace WebApi.Controllers
 
         // GET: api/Produkt
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
             return _productService.GetProducts().ToList();
         }
 
         [HttpPost]
-        public async Task<ActionResult<ProductDto>> CreateProduct(ProductDto productDTO)
+        public async Task<ActionResult<Product>> CreateProduct(Product productDTO)
         {
-            return _productService.Create(productDTO);
+            return await _productService.Create(productDTO);
         }
 
         // GET: api/Produkt/id
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProductDto>> GetProduct(int id)
+        public async Task<ActionResult<Product>> GetProduct(int id)
         {
             try
             {
-                ProductDto product = _productService.GetProductById(id);
+                Product product = (Product)_productService.GetProductById(id);
 
                 if (product == null)
                 {
@@ -53,7 +54,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditProduct(int id, ProductDto productDTO)
+        public async Task<IActionResult> EditProduct(int id, Product productDTO)
         {
 
             try
@@ -63,7 +64,7 @@ namespace WebApi.Controllers
                     return BadRequest();
                 }
 
-                ProductDto product = _productService.GetProductById(id);
+                Product product = (Product)_productService.GetProductById(id);
                 if (product == null)
                 {
                     return NotFound();
