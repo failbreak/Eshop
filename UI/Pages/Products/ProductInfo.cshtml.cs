@@ -25,7 +25,7 @@ namespace UI.Pages.Products
         {
             if (productId != null)
             {
-                Product = _productService.GetProductById(productId.Value);
+                Product = (ProductDto)_productService.GetProductById(productId.Value);
             }
 
             if (Product == null)
@@ -37,7 +37,7 @@ namespace UI.Pages.Products
 
         public async Task<IActionResult> OnPostAsync(int productId)
         {
-            Product = _productService.GetProductById(productId);
+            Product = (ProductDto)_productService.GetProductById(productId);
 
             if (HttpContext.Session.Get("order") != null)
             {

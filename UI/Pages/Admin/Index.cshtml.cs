@@ -19,7 +19,7 @@ namespace UI.Pages.Admin
         }
         public void OnGet()
         {
-            Products = _productService.GetProducts().ToList();
+            Products = (IEnumerable<ProductDto>)_productService.GetProducts().ToList();
         }
     }
 }

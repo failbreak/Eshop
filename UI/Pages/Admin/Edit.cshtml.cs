@@ -10,7 +10,7 @@ namespace UI.Pages.Admin
     public class EditModel : PageModel
     {
         [BindProperty]
-        public ProductDto Product { get; set; }
+        public Product Product { get; set; }
 
         public IEnumerable<SelectListItem> Categories { get; set; }
         public IEnumerable<SelectListItem> Manufactures { get; set; }
@@ -43,7 +43,7 @@ namespace UI.Pages.Admin
 
             if (productid != null)
             {
-                Product = _productService.GetProductById(productid.Value);
+                Product = (Product)_productService.GetProductById(productid.Value);
             }
 
             if (Product == null)

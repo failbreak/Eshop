@@ -1,3 +1,4 @@
+using DataLayer.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -19,7 +20,7 @@ namespace UI.Pages.Products
             _htmlHelper = htmlHelper;
         }
 
-        public IEnumerable<ProductDto> Products { get; set; }
+        public IEnumerable<Product> Products { get; set; }
 
         public SortFilterOptions SortFilterPage { get; set; }
 

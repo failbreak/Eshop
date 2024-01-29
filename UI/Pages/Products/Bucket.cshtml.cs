@@ -1,3 +1,4 @@
+using DataLayer.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -26,13 +27,15 @@ namespace UI.Pages.Products
 
         public IActionResult OnGet()
         {
+           ProductPicture picture = new ProductPicture();
+            picture.PictureUrl = "lol";
             if (HttpContext.Session.Get("order") != null)
             {
                 Order = HttpContext.Session.Get<OrderDto>("order");
                 Products = Order.Products;
                 foreach (ProductDto item in Products)
                 {
-                    item.pictures = _productService.GetProductById(item.ProductId).pictures;
+                    item.pictures = (ICollection<ProductPicture>)picture;
                     if (item.Stack > 1)
                     {
                         Total += item.Price * item.Stack;

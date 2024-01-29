@@ -22,7 +22,7 @@ namespace UI.Pages.Admin
 
         public async Task<IActionResult> OnGetAsync(int productId)
         {
-            Product = _productService.GetProductById(productId);
+            Product = (ProductDto)_productService.GetProductById(productId);
             if (Product == null)
             {
                 return RedirectToPage("./Index");
@@ -34,7 +34,7 @@ namespace UI.Pages.Admin
         {
             try
             {
-                _productService.Delete(productId);
+                _productService.DeleteProduct(productId);
                 logger.LogDebug("Product Deleted");
             }
             catch (Exception ex)

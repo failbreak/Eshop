@@ -11,7 +11,7 @@ namespace UI.Pages.Admin
     public class CreateModel : PageModel
     {
         [BindProperty]
-        public ProductDto Product { get; set; }
+        public Product Product { get; set; }
         public IEnumerable<SelectListItem> Categories { get; set; }
         public IEnumerable<SelectListItem> Manufactures { get; set; }
         public string Url { get; set; }
