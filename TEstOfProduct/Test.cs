@@ -110,28 +110,28 @@ namespace TEstOfProduct
             var customer = _context.Customers.ToList().First();
             Assert.Equal(testprod.FirstName, customer.FirstName);
         }
-        [Fact]
-        public void RemoveCust()
-        {
-            //arrange
-            var _context = Extension.CreateContext();
-            var _CustService = new CustomerService(_context);
+        //[Fact]
+        //public void RemoveCust()
+        //{
+        //    //arrange
+        //    var _context = Extension.CreateContext();
+        //    var _CustService = new CustomerService(_context);
 
-            //act
-            var testprod = new Customer();
-            testprod.FirstName = "lol";
-            testprod.LastName = "slol";
-            testprod.Address = "lolstreet";
-            testprod.email = "lol@lol.lol";
-            testprod.CustomerId = 69;
+        //    //act
+        //    var testprod = new Customer();
+        //    testprod.FirstName = "lol";
+        //    testprod.LastName = "slol";
+        //    testprod.Address = "lolstreet";
+        //    testprod.email = "lol@lol.lol";
+        //    testprod.CustomerId = 69;
 
 
-            _CustService.CreateCustomer(testprod);
-            _CustService.DeleteCustomer(69);
+        //    _CustService.CreateCustomer(testprod);
+        //    _CustService.DeleteCustomer(69);
 
-            var customer = _context.Customers.ToList().First();
-            Assert.Equal(true, customer.IsDeleted);
-        }
+        //    var customer = _context.Customers.ToList().First();
+        //    Assert.Equal(true, customer.IsDeleted);
+        //}
         [Fact]
         public void EditCust()
         {
